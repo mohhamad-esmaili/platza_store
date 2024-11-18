@@ -22,14 +22,18 @@ extension TextfieldExtension on TextField {
 }
 
 extension TextFormDecoration on InputDecoration {
-  InputDecoration platzaInputDecoration(
-      {String? textFieldLabel, Function? validator}) {
+  InputDecoration platzaInputDecoration({
+    String? textFieldLabel,
+    Function? validator,
+    Widget? suffixWidget,
+  }) {
     return InputDecoration(
       labelText: textFieldLabel,
       labelStyle: TextStyle(color: Colors.black),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(30),
       ),
+      suffixIcon: suffixWidget,
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(30),
         borderSide: BorderSide(

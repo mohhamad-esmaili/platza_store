@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+import 'package:platza_store/core/config/app_router.dart';
 import 'package:platza_store/core/gen/assets.gen.dart';
 import 'package:platza_store/core/utils/textfield_extension.dart';
 import 'package:platza_store/core/utils/textfield_validators.dart';
@@ -20,7 +22,7 @@ class _SigninViewState extends State<SigninView> {
   final _formKey = GlobalKey<FormState>();
   final FocusNode _emailFocusNode = FocusNode();
   final FocusNode _passFocusNode = FocusNode();
-
+  bool _isPasswordVisible = true;
   @override
   void dispose() {
     super.dispose();
@@ -84,10 +86,16 @@ class _SigninViewState extends State<SigninView> {
                           ),
                         ),
                         const Gap(40),
-                        const Text(
-                          "Welcome back 👋🏻, login to your account.",
-                          style: TextStyle(
-                            fontSize: 20,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                          ),
+                          child: const Text(
+                            "Welcome back 👋🏻, login to your account.",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
                           ),
                         ),
                         const Gap(10),
@@ -122,15 +130,39 @@ class _SigninViewState extends State<SigninView> {
                                 child: TextFormField(
                                   controller: _passTextEditingController,
                                   focusNode: _passFocusNode,
+                                  obscureText: _isPasswordVisible,
                                   validator:
                                       TextfieldValidators.passwordValidator,
                                   onFieldSubmitted: (value) => _onSubmit(),
                                   decoration: const InputDecoration()
                                       .platzaInputDecoration(
                                     textFieldLabel: "Password",
+                                    suffixWidget: IconButton(
+                                      icon: AnimatedSwitcher(
+                                        duration:
+                                            const Duration(milliseconds: 300),
+                                        switchInCurve: Curves.bounceIn,
+                                        child: _isPasswordVisible
+                                            ? Icon(
+                                                key: const ValueKey("1"),
+                                                Icons.visibility,
+                                              )
+                                            : Icon(
+                                                key: const ValueKey("2"),
+                                                Icons.visibility_off,
+                                              ),
+                                      ),
+                                      onPressed: () {
+                                        setState(() {
+                                          _isPasswordVisible =
+                                              !_isPasswordVisible;
+                                        });
+                                      },
+                                    ),
                                   ),
                                 ),
                               ),
+                              Gap(10),
                               Container(
                                 width: double.infinity,
                                 padding: const EdgeInsets.symmetric(
@@ -138,13 +170,31 @@ class _SigninViewState extends State<SigninView> {
                                   vertical: 5,
                                 ),
                                 child: CustomButton(
-                                  title: "Submit",
+                                  title: "Login",
                                   onTap: _onSubmit,
                                 ),
                               )
                             ],
                           ),
                         ),
+                        Text(
+                          "or",
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                        Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 5,
+                          ),
+                          child: CustomButton(
+                            title: "SignUp",
+                            outlineMode: true,
+                            onTap: () => Get.offAndToNamed(AppRouter.signUpUrl),
+                          ),
+                        )
                       ],
                     ),
                   ),

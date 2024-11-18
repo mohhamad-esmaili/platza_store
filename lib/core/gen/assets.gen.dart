@@ -22,12 +22,40 @@ class $AssetsFontsGen {
   List<String> get values => [imprimaRegular];
 }
 
+class $AssetsIconsGen {
+  const $AssetsIconsGen();
+
+  /// File path: assets/icons/Bag.svg
+  SvgGenImage get bag => const SvgGenImage('assets/icons/Bag.svg');
+
+  /// File path: assets/icons/Home.svg
+  SvgGenImage get home => const SvgGenImage('assets/icons/Home.svg');
+
+  /// File path: assets/icons/Menu.svg
+  SvgGenImage get menu => const SvgGenImage('assets/icons/Menu.svg');
+
+  /// File path: assets/icons/Profile.svg
+  SvgGenImage get profile => const SvgGenImage('assets/icons/Profile.svg');
+
+  /// File path: assets/icons/Search.svg
+  SvgGenImage get search => const SvgGenImage('assets/icons/Search.svg');
+
+  /// File path: assets/icons/setting.svg
+  SvgGenImage get setting => const SvgGenImage('assets/icons/setting.svg');
+
+  /// List of all assets
+  List<SvgGenImage> get values => [bag, home, menu, profile, search, setting];
+}
+
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
   /// File path: assets/images/auth_poster.png
   AssetGenImage get authPoster =>
       const AssetGenImage('assets/images/auth_poster.png');
+
+  /// File path: assets/images/avatar.jpg
+  AssetGenImage get avatar => const AssetGenImage('assets/images/avatar.jpg');
 
   /// File path: assets/images/blob1.svg
   SvgGenImage get blob1 => const SvgGenImage('assets/images/blob1.svg');
@@ -36,13 +64,14 @@ class $AssetsImagesGen {
   SvgGenImage get blob2 => const SvgGenImage('assets/images/blob2.svg');
 
   /// List of all assets
-  List<dynamic> get values => [authPoster, blob1, blob2];
+  List<dynamic> get values => [authPoster, avatar, blob1, blob2];
 }
 
 class Assets {
   Assets._();
 
   static const $AssetsFontsGen fonts = $AssetsFontsGen();
+  static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
 }
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+import 'package:platza_store/core/config/app_router.dart';
 import 'package:platza_store/core/gen/assets.gen.dart';
 import 'package:platza_store/core/widgets/custom_button.dart';
 
@@ -16,7 +18,7 @@ class OnboardingView extends StatelessWidget {
           children: [
             Container(
               width: double.infinity,
-              height: 465,
+              height: Get.size.height / 1.9,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(45),
@@ -25,9 +27,17 @@ class OnboardingView extends StatelessWidget {
                 border: Border.all(
                   color: Color(0xff000000),
                 ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black26,
+                    blurStyle: BlurStyle.outer,
+                    blurRadius: 10,
+                    offset: Offset(0, 4),
+                  )
+                ],
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage(Assets.images.authPoster.path),
+                  image: Assets.images.authPoster.provider(),
                 ),
               ),
             ),
@@ -74,17 +84,21 @@ class OnboardingView extends StatelessWidget {
                   Expanded(
                     child: CustomButton(
                       title: "Sign Up",
-                      onTap: () {},
+                      onTap: () => Get.toNamed(AppRouter.signUpUrl),
                       outlineMode: true,
                     ),
                   ),
                   Gap(10),
                   Expanded(
-                    child: CustomButton(title: "Sign In", onTap: () {}),
+                    child: CustomButton(
+                      title: "Sign In",
+                      onTap: () => Get.toNamed(AppRouter.signInUrl),
+                    ),
                   ),
                 ],
               ),
-            )
+            ),
+            Gap(10),
           ],
         ),
       ),

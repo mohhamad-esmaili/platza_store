@@ -16,4 +16,11 @@ class TextfieldValidators {
     }
     return null;
   }
+
+  static String? nameValidator(String? name) {
+    if (name == null || name.isEmpty) {
+      return "Empty Field";
+    }
+    return null;
+  }
 }
