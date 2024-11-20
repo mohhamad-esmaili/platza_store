@@ -40,11 +40,18 @@ class $AssetsIconsGen {
   /// File path: assets/icons/Search.svg
   SvgGenImage get search => const SvgGenImage('assets/icons/Search.svg');
 
+  /// File path: assets/icons/bookmark.svg
+  SvgGenImage get bookmark => const SvgGenImage('assets/icons/bookmark.svg');
+
   /// File path: assets/icons/setting.svg
   SvgGenImage get setting => const SvgGenImage('assets/icons/setting.svg');
 
+  /// File path: assets/icons/trash.svg
+  SvgGenImage get trash => const SvgGenImage('assets/icons/trash.svg');
+
   /// List of all assets
-  List<SvgGenImage> get values => [bag, home, menu, profile, search, setting];
+  List<SvgGenImage> get values =>
+      [bag, home, menu, profile, search, bookmark, setting, trash];
 }
 
 class $AssetsImagesGen {
@@ -63,8 +70,42 @@ class $AssetsImagesGen {
   /// File path: assets/images/blob2.svg
   SvgGenImage get blob2 => const SvgGenImage('assets/images/blob2.svg');
 
+  /// Directory path: assets/images/logos
+  $AssetsImagesLogosGen get logos => const $AssetsImagesLogosGen();
+
+  /// File path: assets/images/map_preview.png
+  AssetGenImage get mapPreview =>
+      const AssetGenImage('assets/images/map_preview.png');
+
   /// List of all assets
-  List<dynamic> get values => [authPoster, avatar, blob1, blob2];
+  List<dynamic> get values => [authPoster, avatar, blob1, blob2, mapPreview];
+}
+
+class $AssetsImagesLogosGen {
+  const $AssetsImagesLogosGen();
+
+  /// File path: assets/images/logos/american_express.png
+  AssetGenImage get americanExpress =>
+      const AssetGenImage('assets/images/logos/american_express.png');
+
+  /// File path: assets/images/logos/apple_pay.png
+  AssetGenImage get applePay =>
+      const AssetGenImage('assets/images/logos/apple_pay.png');
+
+  /// File path: assets/images/logos/mastercard.png
+  AssetGenImage get mastercard =>
+      const AssetGenImage('assets/images/logos/mastercard.png');
+
+  /// File path: assets/images/logos/paypal.png
+  AssetGenImage get paypal =>
+      const AssetGenImage('assets/images/logos/paypal.png');
+
+  /// File path: assets/images/logos/visa.png
+  AssetGenImage get visa => const AssetGenImage('assets/images/logos/visa.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values =>
+      [americanExpress, applePay, mastercard, paypal, visa];
 }
 
 class Assets {
@@ -105,7 +146,7 @@ class AssetGenImage {
     ImageRepeat repeat = ImageRepeat.noRepeat,
     Rect? centerSlice,
     bool matchTextDirection = false,
-    bool gaplessPlayback = false,
+    bool gaplessPlayback = true,
     bool isAntiAlias = false,
     String? package,
     FilterQuality filterQuality = FilterQuality.low,

@@ -5,14 +5,14 @@ import 'package:platza_store/feature/home/presentation/screen/home_view.dart';
 import 'package:platza_store/feature/search/presentation/screen/search_view.dart';
 import 'package:platza_store/feature/settings/presentation/screen/settings_view.dart';
 
-class RootNavigationbar extends StatefulWidget {
-  const RootNavigationbar({super.key});
+class MainWrapper extends StatefulWidget {
+  const MainWrapper({super.key});
 
   @override
-  State<RootNavigationbar> createState() => _RootNavigationbarState();
+  State<MainWrapper> createState() => _MainWrapperState();
 }
 
-class _RootNavigationbarState extends State<RootNavigationbar> {
+class _MainWrapperState extends State<MainWrapper> {
   int _currentIndex = 0;
   final List<Widget> _screens = [
     HomeView(),

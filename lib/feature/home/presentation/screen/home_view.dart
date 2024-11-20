@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:platza_store/core/config/app_router.dart';
 import 'package:platza_store/core/gen/assets.gen.dart';
 
 class HomeView extends StatefulWidget {
@@ -87,77 +88,98 @@ class _HomeViewState extends State<HomeView> {
             horizontal: 25,
             vertical: 8,
           ),
-          sliver: SliverGrid(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          sliver: SliverGrid.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               mainAxisSpacing: 15,
               crossAxisSpacing: 12,
               childAspectRatio: 0.75,
+              mainAxisExtent: 220,
             ),
-            delegate: SliverChildBuilderDelegate(
-              childCount: 20,
-              (context, index) {
-                return SizedBox(
-                  height: 250,
-                  child: Stack(
-                    children: [
-                      Container(
-                        height: 180,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: Assets.images.authPoster.provider(),
-                            fit: BoxFit.cover,
-                          ),
-                          borderRadius: BorderRadius.circular(20),
+            itemCount: 10,
+            itemBuilder: (context, index) => SizedBox(
+              height: 200,
+              child: Stack(
+                children: [
+                  Hero(
+                    tag: ValueKey(index),
+                    child: Material(
+                      child: InkWell(
+                        onTap: () => Get.toNamed(
+                          AppRouter.productUrl,
+                          arguments: index,
                         ),
-                      ),
-                      Positioned(
-                        bottom: 25,
-                        right: 15,
-                        child: InkWell(
-                          onTap: () {},
-                          borderRadius: BorderRadius.circular(20),
-                          child: Container(
-                            width: 50,
-                            height: 50,
-                            padding: EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Color(0xff0D0D0E),
-                              border: Border.all(color: Colors.white, width: 7),
-                            ),
-                            child: Center(
-                              child: Assets.icons.bag.svg(
-                                colorFilter: ColorFilter.mode(
-                                  Colors.white,
-                                  BlendMode.srcIn,
-                                ),
-                              ),
+                        child: Container(
+                          height: 165,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            image: DecorationImage(
+                              image: Assets.images.authPoster.provider(),
+                              fit: BoxFit.cover,
                             ),
                           ),
                         ),
                       ),
-                      Positioned(
-                        bottom: 0,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "\$200",
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              "Leather Coart",
-                              style: TextStyle(fontSize: 16),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                );
-              },
+                  // Add "bag" icon in a fixed position
+                  Positioned(
+                    bottom: 30,
+                    right: 15,
+                    child: InkWell(
+                      onTap: () {},
+                      borderRadius: BorderRadius.circular(20),
+                      child: Container(
+                        width: 50,
+                        height: 50,
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: const Color(0xff0D0D0E),
+                          border: Border.all(
+                            color: Get.theme.scaffoldBackgroundColor,
+                            width: 5,
+                          ),
+                        ),
+                        child: Center(
+                          child: Assets.icons.bag.svg(
+                            colorFilter: const ColorFilter.mode(
+                              Colors.white,
+                              BlendMode.srcIn,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  // Add "price" and "product name" at the bottom
+                  Positioned(
+                    bottom: 10,
+                    left: 10,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "\$200",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                        Text(
+                          "Leather Coart",
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
