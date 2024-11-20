@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:platza_store/core/gen/assets.gen.dart';
 import 'package:platza_store/core/widgets/custom_button.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ProductView extends StatefulWidget {
   ProductView({super.key});
@@ -13,12 +14,19 @@ class ProductView extends StatefulWidget {
 
 class _ProductViewState extends State<ProductView> {
   final List<String> shirtSizes = ['S', 'M', 'L', 'XL', 'XXL'];
-
+  final PageController pageController = PageController(initialPage: 0);
   String selectedSize = 'L';
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     int index = Get.arguments;
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -49,21 +57,46 @@ class _ProductViewState extends State<ProductView> {
                 child: Container(
                   height: Get.size.height / 2,
                   width: double.infinity,
-                  child: CarouselView(
-                    itemSnapping: true,
-                    itemExtent: double.infinity,
-                    children: List.generate(
-                      5,
-                      (index) => Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: Assets.images.authPoster.provider(),
-                            fit: BoxFit.cover,
+                  child: Stack(
+                    alignment: Alignment.bottomCenter,
+                    children: [
+                      PageView.builder(
+                        controller: pageController,
+                        itemCount: 5,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 5),
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: Assets.images.authPoster.provider(),
+                                fit: BoxFit.cover,
+                              ),
+                              borderRadius: BorderRadius.circular(40),
+                            ),
+                          );
+                        },
+                      ),
+                      Positioned(
+                        bottom: 20,
+                        child: SmoothPageIndicator(
+                          controller: pageController,
+                          count: 5,
+                          effect: ExpandingDotsEffect(
+                            dotHeight: 8,
+                            dotWidth: 8,
+                            activeDotColor: Colors.white,
+                            dotColor: Colors.grey.shade500,
                           ),
-                          borderRadius: BorderRadius.circular(40),
+                          onDotClicked: (index) {
+                            pageController.animateToPage(
+                              index,
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.easeInOut,
+                            );
+                          },
                         ),
                       ),
-                    ),
+                    ],
                   ),
                 ),
               ),
@@ -72,7 +105,7 @@ class _ProductViewState extends State<ProductView> {
               padding: const EdgeInsets.only(
                   left: 25, right: 25, top: 10, bottom: 5),
               child: Text(
-                "Premium Tagerine Shirt",
+                "Premium Tangerine Shirt",
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 24,
@@ -84,7 +117,7 @@ class _ProductViewState extends State<ProductView> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: Text(
-                  "Andy shoes are designed to keeping in...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaawwwwwwwwwwwwwwwwwwwwwwwwwww",
+                  "Andy shoes are designed to keeping in...",
                   maxLines: 1,
                   style: TextStyle(
                     color: Colors.black,
