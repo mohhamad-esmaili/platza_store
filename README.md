@@ -1,8 +1,8 @@
 # Platza Store
 
-Made with Flutter 
+Made with Flutter and PocketBase
+in Getx Pattern
 
-Thanks to [Platza Api](https://fakeapi.platzi.com/)
 
 &
  

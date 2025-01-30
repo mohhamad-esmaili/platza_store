@@ -19,6 +19,8 @@ dependencies:
   flutter_svg: ^2.0.14
   smooth_page_indicator: ^1.2.0+3
   flutter_slidable: ^3.1.1
+  flutter_animate: ^4.5.0
+  dio: ^5.7.0
 
 
 dev_dependencies:
