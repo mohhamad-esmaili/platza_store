@@ -16,11 +16,8 @@
         <mxCell id="BzG6Zfu_ZHQsqkgbVohu-3" value="Product" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="360" y="100" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="BzG6Zfu_ZHQsqkgbVohu-6" value="Text" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="BzG6Zfu_ZHQsqkgbVohu-6" value="&lt;div&gt;name&lt;/div&gt;&lt;div&gt;description&lt;/div&gt;&lt;div&gt;image&lt;/div&gt;size&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="360" y="175" width="120" height="135" as="geometry" />
-        </mxCell>
-        <mxCell id="BzG6Zfu_ZHQsqkgbVohu-7" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Platza&amp;nbsp;&lt;/h1&gt;&lt;p&gt;u&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="20" y="160" width="180" height="120" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
